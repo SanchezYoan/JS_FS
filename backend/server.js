@@ -2,12 +2,22 @@ const express = require("express");
 const { connect } = require("mongoose");
 const connectDB = require("./config/db");
 const dotenv = require("dotenv").config();
+const cors = require("cors");
 const port = 5000;
-
-const app = express();
 
 // connection to DataBase
 connectDB();
+
+const app = express();
+
+// Authorisation CORS
+app.use(
+  cors({
+    origin: "http://localhost:3000",
+    credentials: true,
+    optionsSuccessStatus: 200,
+  })
+);
 
 // Middleware qui permet de traiter les données de la Request
 
